@@ -1,0 +1,22 @@
+<form [formGroup]="projectForm">
+  <div class="form-group">
+    <label >Name Project</label>
+    <input type="text" formControlName="nameProject" class="form-control" placeholder=" Enter Name Project">
+  </div>
+
+  <div class="form-group">
+    <label >Date Start</label>
+    <input type="date" formControlName="dateStart" class="form-control"  >
+  </div>
+
+  <div class="form-group">
+    <label >Date End</label>
+    <input type="date" formControlName="dateEnd" class="form-control"  >
+  </div>
+
+
+
+  <button type="submit" class="btn btn-primary" (click)="addProject(projectForm.value)" >Add Project</button>
+  <button type="button" class="btn btn-secondary" routerLink="/list-project">Back</button>
+</form>
+

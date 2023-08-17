@@ -1,0 +1,61 @@
+<h2>Project List</h2>
+<div class="search-add-container">
+
+  <button type="button"  routerLink="/add-project" class="btn btn-outline-primary">Add project</button>
+</div>
+<table class="table table-striped">
+  <thead >
+    <tr>
+      <th>
+        <span>ID</span>
+      </th>
+      <th>
+        <div>
+            <span>Project name</span>
+
+        </div>
+      </th>
+      <th>
+        <div>
+            <span>Date Start</span>
+
+        </div>
+      </th>
+
+      <th>
+        <div>
+            <span>Date End </span>
+
+       </div>
+      </th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor= "let project of projects ">
+
+
+      <td>{{ project.id }}</td>
+      <td>{{ project.nameProject }}</td>
+      <td>{{ project.dateStart | date: 'dd/MM/yyyy' }}</td>
+      <td>{{ project.dateEnd | date: 'dd/MM/yyyy' }}</td>
+
+
+
+      <td>
+        <button  (click)= "updateProject(project.id)" class = "btn btn-outline-primary" >Edit</button>
+        <button (click)= "openConfirmationDialog(project.id)" class ="btn btn-outline-danger" style = "margin-left: 10px">Delete</button>
+        <button  (click)= "employeeInProject(project.id)" class="btn btn-outline-success" style="margin-left: 10px">Details</button>
+
+      </td>
+    <!-- </ng-container> -->
+    </tr>
+
+
+
+  </tbody>
+</table>
+
+
+
+
