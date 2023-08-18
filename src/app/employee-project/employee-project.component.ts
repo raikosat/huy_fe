@@ -1,8 +1,11 @@
+import { ProjectService } from './../service/project.service';
 import { EmployeeService } from './../service/employee.service';
 import { Employee } from '../model/employee';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { HttpClient } from '@angular/common/http';
+
 
 
 
@@ -20,7 +23,7 @@ export class EmployeeProjectComponent implements OnInit {
 
 
 
-  constructor(private employeeService: EmployeeService,private activeRouter: ActivatedRoute){}
+  constructor(private employeeService: EmployeeService,private activeRouter: ActivatedRoute,private http: HttpClient,public projectService: ProjectService,private router: Router){}
 
 
   ngOnInit(): void {
@@ -31,8 +34,8 @@ export class EmployeeProjectComponent implements OnInit {
 
   getEmployeesInProject(projectId : number) {
      // Gọi service để lấy danh sách nhân viên trong một dự án
-     this.employeeService.getEmployeesInProject(projectId).subscribe(
-      (data: Employee[]) => {
+     console.log('get-employee')
+     this.employeeService.getEmployeesInProject(projectId).subscribe(data => {
         this.employees = data;
       },
       error => {
@@ -41,26 +44,27 @@ export class EmployeeProjectComponent implements OnInit {
     );
   }
 
-  openConfirmationDialog(id: number) {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: {
-        title: 'Confirm Delete',
-        message: 'Are you sure you want to delete this employee?',
+  deleteEmployeeFromProject(projectId: number, employeeId: number) {
+    console.log('delete')
+    this.projectService.deleteEmployeeInProject(projectId,employeeId).subscribe({
+      next: (data)=>{
+
       },
-    });
+      error:(e)=>{
 
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) {
-        this.employeeService.deleteEmployee(id).subscribe(() => {
-          alert('Employee deleted successfully!');
-        });
+
+        console.log(e)
+        this.getEmployeesInProject(projectId)
       }
+
     });
-  }
-
-
 
   }
+  GoToEmployeeProject() {
+    this.router.navigate(['/employee-project/']);
+  }
+
+}
 
 
 

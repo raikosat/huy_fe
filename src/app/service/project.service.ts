@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProjectService {
-  
+
 
   private baseURL ="http://localhost:8080/project"
 
@@ -32,6 +32,10 @@ export class ProjectService {
 
   deleteProject(id: number): Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/delete/${id}`);
+  }
+
+  deleteEmployeeInProject(projectId: number, employeeId: number): Observable<Object>{
+    return this.httpClient.delete(`${this.baseURL}/${projectId}/employee/${employeeId}`);
   }
 
 }

@@ -27,7 +27,7 @@
       <td>{{ employee.fullName }}</td>
       <td>{{ employee.id }}</td>
       <td>
-        <button (click)= "openConfirmationDialog(employee.id)" class ="btn btn-outline-danger" style = "margin-left: 10px">Delete</button>
+        <button (click)="deleteEmployeeFromProject(projectId, employee.id)" class ="btn btn-outline-danger" style = "margin-left: 10px">Delete</button>
 
       </td>
     <!-- </ng-container> -->
@@ -42,6 +42,4 @@
 
 
 
-<div *ngFor="let employee of employees">
 
-</div>
