@@ -1,0 +1,100 @@
+<h2>Employee List</h2>
+<div class="search-add-container">
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchKeyword" (input)="onSearchInputChange()" placeholder="Search employee" />
+  </div>
+  <button type="button" routerLink="/add-employee" class="btn btn-outline-primary">Add employee</button>
+</div>
+<table class="table table-striped">
+  <thead >
+    <tr>
+      <th>
+        <span>ID</span>
+      </th>
+      <th>
+        <div>
+            <span>Full name</span>
+
+        </div>
+      </th>
+      <th>
+        <div>
+            <span>Address</span>
+
+        </div>
+      </th>
+      <th>
+        <div>
+            <span>Phone</span>
+
+       </div>
+      </th>
+      <th>
+        <div>
+            <span>YOE</span>
+
+        </div>
+      </th>
+      <th>
+        <div>
+            <span>Birthday</span>
+
+        </div>
+      </th>
+      <th>
+        <div>
+            <span>Gender</span>
+
+        </div>
+      </th>
+      <th>
+        <div>
+            <span>Office</span>
+
+        </div>
+      </th>
+      <th>
+        <div>
+            <span>Date Start</span>
+
+        </div>
+      </th>
+      <th>
+        <div>
+          <span>Date End</span>
+        </div>
+      </th>
+      <!-- <th>Photo</th> -->
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor= "let employee of employees | paginate: { itemsPerPage: itemsPerPage , currentPage: p }">
+
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.fullName }}</td>
+      <td>{{ employee.address }}</td>
+      <td>{{ employee.phone }}</td>
+      <td>{{ employee.yearsOfExperience }}</td>
+      <td>{{ employee.birthday  | date: 'dd/MM/yyyy'}}</td>
+      <td>{{ employee.gender }}</td>
+      <td>{{ employee.office }}</td>
+      <td>{{ employee.dateStartWork  | date: 'dd/MM/yyyy'}}</td>
+      <td>{{ employee.dateOffWork  | date: 'dd/MM/yyyy'}}</td>
+
+      <td>
+        <button (click)= "updateEmployee(employee.id)"  class = "btn btn-outline-primary" >Edit</button>
+        <button (click)= "openConfirmationDialog(employee.id)" class ="btn btn-outline-danger" style = "margin-left: 10px">Delete</button>
+      </td>
+    <!-- </ng-container> -->
+    </tr>
+
+
+
+  </tbody>
+</table>
+
+<div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+

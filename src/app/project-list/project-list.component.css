@@ -1,0 +1,49 @@
+/* Đảm bảo bảng không tràn ra ngoài màn hình */
+table {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Đặt chiều rộng tối đa cho các cột để tránh việc bảng quá rộng */
+table th,
+table td {
+  position: relative;
+  padding-bottom: 30px; /* Tạo khoảng cách dưới tiêu đề */
+}
+
+/* Đảm bảo ô input không tràn ra ngoài ô cột */
+table th input,
+table td input {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Điều chỉnh khoảng cách giữa các hàng */
+table tbody tr {
+  margin-bottom: 10px; /* Điều chỉnh theo nhu cầu */
+}
+
+input{
+  border-radius: 50px;
+  padding: 5px 10px;
+  border: 1px solid;
+}
+
+.search-add-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.search-container {
+  text-align: center;
+}
+
+.btn-outline-primary {
+  margin-left: 10px;
+}
